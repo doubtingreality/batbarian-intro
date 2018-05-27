@@ -5,6 +5,8 @@
 $sz-torch-distance: 12%;
 $sz-torch-distance-mobile: 28%;
 
+$cl-torch: #ebd9b3;
+
 body {
 	background: #292933;
 	overflow-x: hidden;
@@ -76,6 +78,7 @@ header {
 	}
 
 	&.is-lit {
+		z-index: 3;
 		background-image: url('assets/img/torch.gif');
 	}
 }
@@ -88,10 +91,8 @@ header {
 	left: 50%;
 	width: 15rem;
 	height: 15rem;
-	background-image: radial-gradient(circle closest-side, #eccb83 20%, transparentize(#eccb83, .5) 40%, transparentize(#eccb83, 1) 85%);
+	background-image: radial-gradient(circle closest-side, $cl-torch 20%, transparentize($cl-torch, .5) 40%, transparentize($cl-torch, 1) 85%);
 	transform: translate(-50%, -55%) scale(0);
-	animation: lightFlicker 256ms infinite;
-	transition: transform 100ms;
 	mix-blend-mode: soft-light;
 
 	&--left {
@@ -112,6 +113,14 @@ header {
 	}
 
 	&.is-lit {
+		animation: lightFlicker 256ms infinite both;
+		transition: transform 100ms;
+		transform: translate(-50%, -55%) scale(1);
+	}
+
+	&.is-lit-ie {
+		animation: lightFlickerIE 256ms infinite both;
+		transition: transform 100ms;
 		transform: translate(-50%, -55%) scale(1);
 	}
 }
@@ -122,7 +131,7 @@ header {
 	top: 0;
 	width: 80px;
 	height: 80px;
-	background-image: url('assets/img/pipidle.gif');
+	background-image: url('assets/img/pip.gif');
 	background-repeat: no-repeat;
 	background-size: contain;
 	transform: translate(-50%, -50%);
@@ -137,14 +146,14 @@ header {
 	bottom: calc(20% - 8px);
 	width: 80px;
 	height: 80px;
-	background-image: url('assets/img/barbar4.gif');
+	background-image: url('assets/img/barbarian.gif');
 	background-origin: 50%;
 	background-repeat: no-repeat;
 	background-size: contain;
 	transform: translate(-50%, 0);
 
 	&.is-active {
-		background-image: url('assets/img/barbar4_idle.gif');
+		background-image: url('assets/img/barbarian_idle.gif');
 	}
 }
 
@@ -180,7 +189,7 @@ header {
 }
 
 .header__logo {
-	z-index: 3;
+	z-index: 4;
 	position: absolute;
 	left: 50%;
 	top: 10%;

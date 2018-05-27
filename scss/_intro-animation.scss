@@ -52,6 +52,24 @@
 	}
 }
 
+@keyframes lightFlickerIE {
+	0% {
+		opacity: .3;
+	}
+
+	25% {
+		opacity: .2;
+	}
+
+	75% {
+		opacity: .25;
+	}
+
+	100% {
+		opacity: .2;
+	}
+}
+
 @keyframes shake {
 	0% {
 		transform: translate(8px, 7px);
