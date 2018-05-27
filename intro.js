@@ -1,21 +1,26 @@
 (function() {
+	'use strict';
+
 	var header = document.querySelector('header');
-	var spotlight = document.querySelector('.header__spotlight');
 	var pip = document.querySelector('.header__pip');
+	var spotlight = document.querySelector('.header__spotlight');
 	var logo = document.querySelector('.header__logo');
+	var barbarian = document.querySelector('.header__barbarian');
 	var torches = document.querySelectorAll('.header__torch');
 	var torchLights = document.querySelectorAll('.header__torch-light');
 	var animationDone = false;
 	var introEnd = false;
 	var spotlightScale = 8;
-	var spotlightScaleEnd = 40;
+	var spotlightScaleEnd = 30;
+	var centerScreenX = window.innerWidth * .5;
 
 	pip.addEventListener('animationend', function() {
 		spotlight.classList.add('is-revealed');
 		logo.classList.add('is-visible');
+		barbarian.classList.add('is-active');
 
 		logo.addEventListener('transitionend', function() {
-			header.classList.add('quake');
+			header.classList.add('shake');
 		});
 
 		setTimeout(function() {
@@ -32,9 +37,16 @@
 	});
 
 	function animationStep(timestamp) {
-		var pipPosition = pip.getBoundingClientRect();
+		var locationX;
+		var locationY;
 
-		if (animationDone) {
+		if (!animationDone) {
+			var pipPosition = pip.getBoundingClientRect();
+			locationX = pipPosition.left + pipPosition.width * .5 + 'px';
+			locationY = pipPosition.top + pipPosition.height * .5 + 'px';
+		} else {
+			locationX = centerScreenX + 'px';
+			locationY = '60%';
 			spotlightScale += (spotlightScaleEnd - spotlightScale) * .1;
 
 			if (spotlightScale > spotlightScaleEnd - 1) {
@@ -43,12 +55,12 @@
 		}
 
 		spotlight.style.backgroundImage =
-		'radial-gradient(circle at ' +
-		(pipPosition.left + pipPosition.width * .5) + 'px ' +
-		(pipPosition.top + pipPosition.height * .5) + 'px,' +
-		'transparent ' + (spotlightScale * .3) + 'rem,' +
-		'rgba(0, 0, 0, 0.15) ' + (spotlightScale * .6) + 'rem,' +
-		'rgba(0, 0, 0, 0.85) ' + spotlightScale + 'rem)';
+			'radial-gradient(circle at ' +
+			locationX + ' ' +
+			locationY + ',' +
+			'transparent ' + (spotlightScale * .3) + 'rem,' +
+			'rgba(0, 0, 0, 0.15) ' + (spotlightScale * .6) + 'rem,' +
+			'rgba(0, 0, 0, 0.85) ' + spotlightScale + 'rem)';
 
 
 		if (!introEnd) {
@@ -56,7 +68,10 @@
 		}
 	}
 
-	window.addEventListener('resize', animationStep);
+	window.addEventListener('resize', function() {
+		centerScreenX = window.innerWidth * .5;
+		animationStep()
+	});
 
 	window.requestAnimationFrame(animationStep);
 })();

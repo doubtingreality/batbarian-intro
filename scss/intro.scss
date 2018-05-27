@@ -15,8 +15,8 @@ header {
 	height: 40rem;
 	overflow: hidden;
 
-	&.quake {
-		animation: quake 256ms forwards;
+	&.shake {
+		animation: shake 256ms forwards;
 	}
 
 	> * {
@@ -126,8 +126,9 @@ header {
 	background-repeat: no-repeat;
 	background-size: contain;
 	transform: translate(-50%, -50%);
-	animation: pip 4s both;
+	animation: pip 4.5s both;
 	animation-delay: 500ms;
+	animation-timing-function: ease-in-out;
 }
 
 .header__barbarian {
@@ -136,11 +137,31 @@ header {
 	bottom: calc(20% - 8px);
 	width: 80px;
 	height: 80px;
-	background-image: url('assets/img/barbar4_idle.gif');
+	background-image: url('assets/img/barbar4.gif');
 	background-origin: 50%;
 	background-repeat: no-repeat;
 	background-size: contain;
 	transform: translate(-50%, 0);
+
+	&.is-active {
+		background-image: url('assets/img/barbar4_idle.gif');
+	}
+}
+
+.header__barbarian-sparkle {
+	z-index: 2;
+	position: absolute;
+	width: 1rem;
+	height: 1rem;
+	left: 50%;
+	margin-left: -22px;
+	bottom: calc(28%);
+	background-image:
+		radial-gradient(25% 25% at center, #fff 10%, transparentize(#fff, .8) 30%, transparentize(#fff, 1) 100%),
+		radial-gradient(50% 10% at center, #fff 10%, transparentize(#fff, .8) 30%, transparentize(#fff, 1) 100%);
+	animation: sparkle 1s both;
+	animation-delay: 3500ms;
+	mix-blend-mode: hard-light;
 }
 
 .header__spotlight {
