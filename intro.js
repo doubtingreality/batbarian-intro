@@ -6,6 +6,7 @@
 	var spotlight = document.querySelector('.header__spotlight');
 	var logo = document.querySelector('.header__logo');
 	var barbarian = document.querySelector('.header__barbarian');
+	var decals = document.querySelector('.header__decals');
 	var torches = document.querySelectorAll('.header__torch');
 	var torchLights = document.querySelectorAll('.header__torch-light');
 	var animationDone = false;
@@ -76,4 +77,31 @@
 	});
 
 	window.requestAnimationFrame(animationStep);
+
+	placeDecals({
+		amount: Math.max(5, Math.ceil(centerScreenX * 0.01)),
+		variations: 25,
+		prefix: 'assets/img/decal',
+		suffix: '.png',
+		x: function() { return Math.round(Math.random() * centerScreenX * 2 - centerScreenX) + 'px' },
+		y: '20%'
+	});
+
+	function pickDecal(arr) {
+		var picked = Math.floor(Math.random() * arr.length);
+		var nr = arr.splice(picked, 1);
+		return nr[0];
+	}
+
+	function placeDecals(args) {
+		var arr = Array.apply(null, {length: args.variations}).map(Number.call, Number);
+
+		for(var i = 0; i < args.amount; i++) {
+			var decal = document.createElement('img');
+			decal.src = args.prefix + pickDecal(arr) + args.suffix;
+			decal.style.marginLeft = args.x();
+			decal.style.bottom = args.y;
+			decals.appendChild(decal);
+		}
+	}
 })();

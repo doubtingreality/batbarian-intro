@@ -5,7 +5,7 @@
 $sz-torch-distance: 12%;
 $sz-torch-distance-mobile: 28%;
 
-$cl-torch: #ebd9b3;
+$cl-torch: #8bebf1;
 
 body {
 	background: #292933;
@@ -14,8 +14,9 @@ body {
 
 header {
 	position: relative;
-	height: 40rem;
+	height: 30rem;
 	overflow: hidden;
+	user-select: none;
 
 	&.shake {
 		animation: shake 256ms forwards;
@@ -33,8 +34,21 @@ header {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #292933;
-	background-image: url('assets/img/wall.png');
+	background-color: #22282f;
+	background-image: url('assets/img/cavewall_tileable.png');
+	background-repeat: repeat-x;
+	background-position-x: 50%;
+	background-position-y: 100%;
+}
+
+.header__ceiling {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	background-image: url('assets/img/cavewallbg_top.png');
+	background-repeat: repeat-x;
 	background-position-x: 50%;
 }
 
@@ -44,8 +58,9 @@ header {
 	left: 0;
 	width: 100%;
 	height: 20%;
-	background-color: #4c4743;
-	background-image: url('assets/img/floor.png');
+	background-color: #1b191c;
+	background-image: url('assets/img/caveground_tileable.png');
+	background-repeat: repeat-x;
 	background-position-x: 50%;
 }
 
@@ -55,7 +70,7 @@ header {
 	left: 50%;
 	width: 44px;
 	height: 64px;
-	background-image: url('assets/img/torch-unlit.gif');
+	background-image: url('assets/img/torch.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 
@@ -79,7 +94,7 @@ header {
 
 	&.is-lit {
 		z-index: 3;
-		background-image: url('assets/img/torch.gif');
+		background-image: url('assets/img/torch-lit.gif');
 	}
 }
 
@@ -164,7 +179,7 @@ header {
 	height: 1rem;
 	left: 50%;
 	margin-left: -22px;
-	bottom: calc(28%);
+	bottom: calc(20% + 48px);
 	background-image:
 		radial-gradient(25% 25% at center, #fff 10%, transparentize(#fff, .8) 30%, transparentize(#fff, 1) 100%),
 		radial-gradient(50% 10% at center, #fff 10%, transparentize(#fff, .8) 30%, transparentize(#fff, 1) 100%);
@@ -204,7 +219,14 @@ header {
 	transition: transform 300ms;
 
 	&.is-visible {
-		opacity: 1;;
+		opacity: 1;
 		transform: translate(-50%, 0) scale(1);
+	}
+}
+
+.header__decals {
+	img {
+		position: absolute;
+		left: 50%;
 	}
 }
