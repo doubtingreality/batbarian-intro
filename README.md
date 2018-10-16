@@ -1,5 +1,5 @@
 # batbarian-intro
-Demo: https://doubtingreality.github.io/batbarian-intro/
+Demo: https://mmousawy.github.io/batbarian-intro/
 
 A CSS and JS intro header to the Batbarian game: [Batbarian game website](http://batbarian.com)
 
